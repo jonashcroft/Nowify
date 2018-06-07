@@ -1,0 +1,19 @@
+/*----------------------------------------
+Font
+----------------------------------------*/
+
+@font-face {
+	font-family: 'source_sans_problack';
+	src: url('../assets/font/sourcesanspro-black-webfont.woff2') format('woff2'),
+		 url('../assets/font/sourcesanspro-black-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'source_sans_proregular';
+	src: url('../assets/font/sourcesanspro-regular-webfont.woff2') format('woff2'),
+		 url('../assets/font/sourcesanspro-regular-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}

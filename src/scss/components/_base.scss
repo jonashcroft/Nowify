@@ -1,0 +1,39 @@
+/*----------------------------------------
+General Styles
+----------------------------------------*/
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+*{
+	min-height: 0;
+	min-width: 0;
+}
+
+
+html, body {
+	width: 100%;
+    height: 100%;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: 16px;
+	font-family: $fontBlack;
+    line-height: 1.6;
+    color: $white;
+    margin: 0;
+    padding: 0;
+
+    a{
+        text-decoration: none;
+        color: $white;
+
+        &:hover{
+            color: $white;
+        }
+    }
+}

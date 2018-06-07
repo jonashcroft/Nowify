@@ -1,0 +1,5 @@
+node_modules/*
+
+# Hidden files
+*.DS_Store
+*Thumbs.db

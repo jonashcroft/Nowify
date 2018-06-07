@@ -1,0 +1,209 @@
+/*------------------------------------
+Imports
+------------------------------------*/
+/*----------------------------------------
+Font
+----------------------------------------*/
+@font-face {
+  font-family: 'source_sans_problack';
+  src: url("../assets/font/sourcesanspro-black-webfont.woff2") format("woff2"), url("../assets/font/sourcesanspro-black-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'source_sans_proregular';
+  src: url("../assets/font/sourcesanspro-regular-webfont.woff2") format("woff2"), url("../assets/font/sourcesanspro-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+/*----------------------------------------
+Global variables...
+----------------------------------------*/
+/*----------------------------------------
+General Styles
+----------------------------------------*/
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit; }
+
+* {
+  min-height: 0;
+  min-width: 0; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-size: 16px;
+  font-family: "source_sans_problack", sans-serif;
+  line-height: 1.6;
+  color: #fff;
+  margin: 0;
+  padding: 0; }
+  html a, body a {
+    text-decoration: none;
+    color: #fff; }
+    html a:hover, body a:hover {
+      color: #fff; }
+
+/*----------------------------------------
+Buttons...
+----------------------------------------*/
+.btn {
+  background: #1db954;
+  text-align: center;
+  font-size: 1.15em;
+  letter-spacing: 2px;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 21px 56px 19px;
+  text-transform: uppercase;
+  font-weight: 700;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; }
+  .btn:hover {
+    background: #20cf5e; }
+
+/*----------------------------------------
+Main app page
+----------------------------------------*/
+body#home {
+  background: #c074b2;
+  -webkit-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+  overflow: hidden; }
+  body#home.connected {
+    background: #191414; }
+  body#home main.wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    -webkit-transition: all 0.75s ease-in-out;
+    transition: all 0.75s ease-in-out; }
+  body#home main.wrapper .authorise {
+    -webkit-box-shadow: 0 6px 9px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 9px rgba(0, 0, 0, 0.3); }
+  body#home main.wrapper .authorise,
+  body#home main.wrapper .idle {
+    background: rgba(25, 20, 20, 0.7);
+    width: 550px;
+    height: 50vh;
+    min-height: 350px;
+    padding: 40px;
+    position: relative;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    z-index: 5; }
+    body#home main.wrapper .authorise h1,
+    body#home main.wrapper .idle h1 {
+      font-size: 2.25em;
+      font-family: "source_sans_problack", sans-serif;
+      margin-top: 0; }
+  body#home main.wrapper .nowPlaying {
+    position: relative;
+    text-align: left;
+    width: 90%;
+    max-width: 950px;
+    height: 90%;
+    opacity: 1;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; }
+    @media only screen and (max-width: 650px) {
+      body#home main.wrapper .nowPlaying {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center; } }
+    body#home main.wrapper .nowPlaying figure {
+      width: 50%;
+      position: relative;
+      max-width: 400px;
+      text-align: center; }
+      @media only screen and (max-width: 650px) {
+        body#home main.wrapper .nowPlaying figure {
+          width: 100%; } }
+      body#home main.wrapper .nowPlaying figure img#artwork {
+        max-width: 100%;
+        height: auto;
+        -webkit-box-shadow: 1px 1px 16px -2px rgba(0, 0, 0, 0.3);
+        box-shadow: 1px 1px 16px -2px rgba(0, 0, 0, 0.3); }
+        @media only screen and (max-width: 650px) {
+          body#home main.wrapper .nowPlaying figure img#artwork {
+            max-width: 70%; } }
+    body#home main.wrapper .nowPlaying figcaption {
+      width: 50%;
+      margin: 0 0 0 0; }
+      @media only screen and (max-width: 650px) {
+        body#home main.wrapper .nowPlaying figcaption {
+          width: 100%;
+          text-align: center; } }
+    body#home main.wrapper .nowPlaying #artistName,
+    body#home main.wrapper .nowPlaying #trackName {
+      line-height: 1.1;
+      word-break: break-word;
+      -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto;
+      letter-spacing: -1.25px; }
+    body#home main.wrapper .nowPlaying #artistName {
+      margin: 0.15em 0 0 0;
+      font-size: 2.55em;
+      font-family: "source_sans_proregular", sans-serif;
+      letter-spacing: 0.5px;
+      opacity: 0.8; }
+      @media only screen and (max-width: 768px) {
+        body#home main.wrapper .nowPlaying #artistName {
+          font-size: 1.75em; } }
+    body#home main.wrapper .nowPlaying #trackName {
+      margin: 0.25em 0 .2em 0;
+      font-size: 3.25em;
+      font-family: "source_sans_problack", sans-serif; }
+      @media only screen and (max-width: 768px) {
+        body#home main.wrapper .nowPlaying #trackName {
+          font-size: 2.55em; } }
+  body#home .inactive {
+    display: none !important; }
+  body#home.active {
+    display: block; }

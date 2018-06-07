@@ -1,0 +1,14 @@
+/*----------------------------------------
+Global variables...
+----------------------------------------*/
+
+$white        : #fff;
+$black        : #191414;
+$spotify_green: #1db954;
+
+$fontReg  : 'source_sans_proregular', sans-serif;
+$fontBlack: 'source_sans_problack',   sans-serif;
+
+@mixin transition($transition-property, $transition-time, $method) {
+    transition: $transition-property $transition-time $method;
+}
