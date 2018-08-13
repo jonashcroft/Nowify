@@ -8,7 +8,7 @@ const init = () => {
     /*-------------
     If we already have an Access Token, display
     our Spotify Data, if not - display the
-    'Connect' button.
+    'Connect ' button.
     --------------*/
 
     if ( getAccessToken('access_token') ) {

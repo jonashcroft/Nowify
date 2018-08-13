@@ -2,6 +2,8 @@ node_modules/*
 src/js/_config.js
 dist/*
 
+index.html
+
 # Hidden files
 *.DS_Store
 *Thumbs.db

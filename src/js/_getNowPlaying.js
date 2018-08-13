@@ -77,7 +77,6 @@ const getNowPlaying = () => {
 
             }
 
-
         })
         .catch( error => {
 
