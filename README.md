@@ -14,8 +14,6 @@ A simple app to display visuals of your current Spotify track. Designed to be us
  5. Once installed, enter `gulp` to run Gulp
  6. You'll need to save a SCSS and JS file in the `/src/` folder to initially compile the code and create a `/dist/` folder.
 
-StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
-
 ## Notes
 
 I originally built this for personal use and decided to share the source code, so things could very well be broken and/or be done better.
