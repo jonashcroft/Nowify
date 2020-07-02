@@ -1,5 +1,6 @@
 {
-  "name": "Jon Ashcroft",
+  "name": "Nowify",
+  "author": "Jon Ashcroft",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
