@@ -14,7 +14,7 @@ Write up:
 
 ## How to use
 
-To get this up and running, you'll need to run the build tools to generate the compiled code. You'll then place that compiled code wherever you want to run Nowify (local webserver, Raspberry Pi etc.) - so this will require you to have some tools installed to your desktop. The following was written for using a Mac.
+To get this up and running, you'll need to run the build tools to generate the compiled code on your computer. Once the compiled code is built, you'll then place that compiled code within the `/dist/` folder wherever you want to run Nowify (local webserver, Raspberry Pi etc.) - so this will require you to have some tools installed to your desktop. The following was written for using a Mac.
 
 ----
 
