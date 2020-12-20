@@ -1,13 +1,16 @@
 # Nowify
 A simple app to display visuals of your current Spotify track. Designed to be used on a Raspberry Pi.
 
-Demo:
-[https://jonashcroft.co.uk/nowify](https://jonashcroft.co.uk/nowify)
+Preview:
+
+![Nowify Preview Image 1](assets/preview-1.png?raw=true "Nowfiy - Preview Image")
+![Nowify Preview Image 2](assets/preview-2.png?raw=true "Nowfiy - Preview Image")
+![Nowify Preview Image 3](assets/preview-3.png?raw=true "Nowfiy - Preview Image")
 
 Write up:
 [https://ashcroft.dev/blog/now-playing-screen-spotify-raspberry-pi-es6/](https://ashcroft.dev/blog/now-playing-screen-spotify-raspberry-pi-es6/)
 
->>> 🚨 **Note**: Nowify was created over 2 years ago as a learning exercise and the code and build process can be greatly improved. I'm considering rewriting a modern version in a new repository.
+> 🚨 **Note**: Nowify was created over 2 years ago as a learning exercise and the code and build process can be greatly improved. I'm considering rewriting a modern version in a new repository.
 
 ## How to use
 
@@ -22,7 +25,7 @@ Given that this project is 2 years old, the versions of each package are quite o
 Instructions: https://tecadmin.net/install-nodejs-with-nvm/
 
 2. Ensure that [Gulp](https://gulpjs.com/) is installed.
- 
+
 Gulp is a task-runner that will assist in compiling our code.
 
 3. Clone this repo, navigate to the Nowify folder and ensure that nvm is using Node 11 by running `nvm version`
