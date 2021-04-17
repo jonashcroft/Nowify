@@ -81,7 +81,7 @@ Now you're ready to go. Open your site on the Raspberry Pi, login, and play some
 @xset s off # disable the screensaver
 @xset -dpms # disable energy saving features
 @xset s noblank # ensure screen doesn't go blank
-@chromium-browser --kiosk https://*YOUR-URL-HERE* # open up chromium to specific web page
+DISPLAY=:0 chromium-browser -kiosk https://[your-url] # open up chromium to specific web page
 ```
 ---
 ### Original Write up:
