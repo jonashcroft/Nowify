@@ -33,8 +33,8 @@ export default {
       test: 'hello, world',
       auth: {
         status: false,
-        clientId: process.env.VUE_APP_SP_CLIENT_ID,
-        clientSecret: process.env.VUE_APP_SP_CLIENT_SECRET,
+        clientId: process.env.NOW_CLIENT_ID,
+        clientSecret: process.env.NOW_CLIENT_SECRET,
         authCode: '',
         accessToken: '',
         refreshToken: ''

@@ -4,17 +4,14 @@
  */
 
 /**
- * Example Function.
+ * Config object.
  */
-//  export function superCool() {
-// return 'x';
-//  }
-
 const config = {
   authNamespace: 'nowify_auth_state'
 }
 
 /**
+ * Get stored authorisation object.
  * @return {Object}
  */
 export function getStoredAuth() {
@@ -22,6 +19,7 @@ export function getStoredAuth() {
 }
 
 /**
+ * Set stored authorisation object.
  * @return {Object}
  */
 export function setStoredAuth(authState = {}) {
