@@ -1,0 +1,39 @@
+/**
+ * Component: Buttons
+ * -----------------------------------------------------------------------------
+ * Styles for buttons.
+ *
+ */
+.button {
+  align-items: center;
+  appearance: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: var(--colour-text-secondary);
+  display: inline-flex;
+  font-size: ms(0);
+  font-weight: var(--font-weight-heading);
+  height: 10px;
+  justify-content: center;
+  letter-spacing: 1px;
+  min-height: 32px;
+  padding: var(--spacing-l) var(--spacing-xl);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 0.25s ease-in-out 0s;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &--authorise {
+    background-color: var(--color-brand-spotify);
+    color: var(--color-text-primary);
+  }
+}

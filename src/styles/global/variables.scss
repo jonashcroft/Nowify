@@ -1,0 +1,31 @@
+/**
+ * Global: Variables.
+ * -----------------------------------------------------------------------------
+ *
+ */
+
+ @font-face {
+  font-display: swap;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+:root {
+  --spacing-m: 1rem;
+  --spacing-l: 1.5rem;
+  --spacing-xl: 2rem;
+
+  --colour-background-now-playing: #301934;
+  --color-text-primary: #fff;
+  --colour-text-secondary: #000;
+  --color-brand-spotify: #1DB954;
+
+  --font-size-base: 16px;
+
+  --font-body: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  --font-weight-body: 400;
+  --font-weight-heading: 900;
+
+  --body-line-height: 1.1;
+}

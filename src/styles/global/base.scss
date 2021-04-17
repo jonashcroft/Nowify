@@ -1,0 +1,28 @@
+/**
+ * Global: Base Styles.
+ * -----------------------------------------------------------------------------
+ */
+html, body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-body);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  width: 100%;
+  line-height: var(--body-line-height);
+}
+
+#app {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #2c3e50;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}

@@ -1,0 +1,24 @@
+/**
+ * Global: Typography.
+ * -----------------------------------------------------------------------------
+ */
+h1 {
+  font-size: 2em;
+  font-weight: var(--font-weight-heading);
+  letter-spacing: -1.25px;
+  margin: 0 0 var(--spacing-m) 0;
+  word-break: break-word;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: var(--font-weight-body);
+  letter-spacing: -0.5px;
+  margin: 0;
+  word-break: break-word;
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.4;
+}

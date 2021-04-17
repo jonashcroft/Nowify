@@ -1,9 +1,23 @@
-node_modules/*
-src/js/_config.js
-dist/*
+.DS_Store
+node_modules
+/dist
 
-index.html
+# local env files
+.env
+.env.local
+.env.*.local
 
-# Hidden files
-*.DS_Store
-*Thumbs.db
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

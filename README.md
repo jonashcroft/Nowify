@@ -1,51 +1,91 @@
 # Nowify
-A simple app to display visuals of your current Spotify track. Designed to be used on a Raspberry Pi.
+
+A simple app to display your currently playing Spotify track on a Raspberry Pi, made with Vue.
+
+Nowify will:
+✅ - Use Spotify Web API to get your current track
+✅ - Only access that and no other data
+✅ - Use Access and Refresh Tokens to ensure that you;re kept logged in between sessions
+✅ - Display the current track artist, cover, and a matching vibrant background colour
 
 Preview:
+![Nowify Preview Image 1](assets/preview-1.png?raw=true "Nowify preview image, cover art for the song 'Wherever you go' by The Avalanches and Jamie xx")
+![Nowify Preview Image 2](assets/preview-2.png?raw=true "Nowify preview image, cover art for the song 'Gas Drawls' by MF DOOM")
+![Nowify Preview Image 3](assets/preview-3.png?raw=true "Nowify preview image, cover art for the song '有吗炒面' by Lexie Liu")
+---
 
-![Nowify Preview Image 1](assets/preview-1.png?raw=true "Nowfiy - Preview Image")
-![Nowify Preview Image 2](assets/preview-2.png?raw=true "Nowfiy - Preview Image")
-![Nowify Preview Image 3](assets/preview-3.png?raw=true "Nowfiy - Preview Image")
+## How to use:
+To use this, you'll need to clone the repo, generate some API keys and run some commands to compile the code.
 
-Write up:
+To compile the code, you will need a package manager installed. Either [npm](https://www.npmjs.com/get-npm) or [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable). I use yarn.
+
+1. Create Spotify Client keys.
+
+To allow authorisation to your track data, you'll need to generate client keys. You can do this by logging in to the [Spotify Dashboard](https://developer.spotify.com/dashboard/applications) creating an app.
+
+2. Clone this repository and install dependencies
+
+After you clone, navigate to the directory and install the dependencies:
+
+via yarn:
+```
+yarn install
+```
+
+via npm:
+```
+npm install
+```
+
+3. Add your Client ID and Client Secret
+
+Copy the `.env.sample` file to a new file called `.env` and enter your generated Client ID and Client Secret.
+
+4. Compile the code
+
+In the repo directory, run the following command to compile the project:
+
+via yarn:
+```
+yarn build
+```
+
+via npm:
+```
+npm run build
+```
+
+You can also run the development version locally on your machine:
+
+via yarn:
+```
+yarn serve
+```
+
+via npm:
+```
+npm run serve
+```
+
+5. Upload to a webserver.
+
+The output of `yarn build` will be created in a folder called `/dist/` - this is the usable version of Nowify which is ready to be added to your web server. You could use Netlify, GitHub Pages, Vercel, or any webserver for this. I use Netlify.
+
+Alternatively, you can use packages to run a local webserver.
+
+6. View on your Pi and play some music.
+
+Now you're ready to go. Open your site on the Raspberry Pi, login, and play some music. I'd recommend disabling the screensaver on your Pi and opening Chromium in kiosk mode:
+
+```
+@xset s off # disable the screensaver
+@xset -dpms # disable energy saving features
+@xset s noblank # ensure screen doesn't go blank
+@chromium-browser --kiosk https://*YOUR-URL-HERE* # open up chromium to specific web page
+```
+
+### Original Write up:
 [https://ashcroft.dev/blog/now-playing-screen-spotify-raspberry-pi-es6/](https://ashcroft.dev/blog/now-playing-screen-spotify-raspberry-pi-es6/)
 
-> 🚨 **Note**: Nowify was created over 2 years ago as a learning exercise and the code and build process can be greatly improved. I'm considering rewriting a modern version in a new repository.
-
-## How to use
-
-To get this up and running, you'll need to run the build tools to generate the compiled code on your computer. Once the compiled code is built, you'll then place that compiled code within the `/dist/` folder wherever you want to run Nowify (local webserver, Raspberry Pi etc.) - so this will require you to have some tools installed to your desktop. The following was written for using a Mac.
-
-----
-
-1. Install Node.
-
-Given that this project is 2 years old, the versions of each package are quite old, so I'd recommend installing Node via NVM (Node Version Manager) and using v11 for Nowify. Installing Node will also install NPM (Node Package Manager).
-
-Instructions: https://tecadmin.net/install-nodejs-with-nvm/
-
-2. Ensure that [Gulp](https://gulpjs.com/) is installed.
-
-Gulp is a task-runner that will assist in compiling our code.
-
-3. Clone this repo, navigate to the Nowify folder and ensure that nvm is using Node 11 by running `nvm version`
-
-4. When in the Nowify folder in your terminal, install the required packages:
-
-`npm install babel-core babel-preset-env babel-register babelify browser-sync browserify browsersync eslint gulp gulp-autoprefixer gulp-babel gulp-concat gulp-cssnano gulp-notify gulp-plumber gulp-rename gulp-sass gulp-sourcemaps gulp-uglify vinyl-buffer vinyl-source-stream node-vibrant --save-dev`
-
-5. Now that the requiremens are added, you'll need Spotify API keys. Generate them by logging in to the [Spotify Dashboard](https://developer.spotify.com/dashboard/applications) and creating a new client.
-
-6. Enter your **Client ID** and **Client Secret** in `src/js/_config.js`
-
-7. Once that's added, start the build tools by executing `gulp` in the terminal.
-
-When the browser window opens, you might see an unstyled page. Simply open any Javascript and CSS file and force a re-save to allow gulp to execute and compile the code. This will compile the CSS and JS into the `dist` folder.
-
-8. Play some music on Spotify
-
-You'll see that Nowify will update with your tracks.
-
-9. Move your compiled code
-
-Your compiled version of Nowify will consist of the `/dist/` folder and `index.html` in the root. Move these two to wherever you want to run Nowify from.
+### Brief About:
+Nowify was a project that I originally made in 2017 when I wanted to learn more modern Javascript. Over the years, I've learned a lot more and had people contact me about Nowify, so I wanted to build a more modern version of it using modern tools. This is still a learning exercise, but hopefully one that's more usable. If you'd like to view the old repository, that can be found on the `old` branch.
