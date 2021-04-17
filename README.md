@@ -15,18 +15,17 @@ Preview:
 ![Nowify Preview Image 3](assets/preview-3.png?raw=true "Nowify preview image, cover art for the song '有吗炒面' by Lexie Liu")
 ---
 
-Original Write up:
-[https://ashcroft.dev/blog/now-playing-screen-spotify-raspberry-pi-es6/](https://ashcroft.dev/blog/now-playing-screen-spotify-raspberry-pi-es6/)
-
 ## How to use:
 To use this, you'll need to clone the repo, generate some API keys and run some commands to compile the code.
 
 To compile the code, you will need a package manager installed. Either [npm](https://www.npmjs.com/get-npm) or [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable). I use yarn.
 
-1. Create Spotify Client keys.
+### 1. Create Spotify Client keys.
 To allow authorisation to your track data, you'll need to generate client keys. You can do this by logging in to the [Spotify Dashboard](https://developer.spotify.com/dashboard/applications) creating an app.
 
-2. Clone this repository and install dependencies
+When you create your Client keys, you must also set the 'Redirect URI' as the URL of your app, so that Spotify redirects you back to Nowify when you authorise your account. The URI will be some variation of 'http://localhost:8080' or 'https://mywebapp.com'.
+
+### 2. Clone this repository and install dependencies
 After you clone, navigate to the directory and install the dependencies:
 
 via yarn:
@@ -39,10 +38,10 @@ via npm:
 npm install
 ```
 
-3. Add your Client ID and Client Secret
+### 3. Add your Client ID and Client Secret
 Copy the `.env.sample` file to a new file called `.env` and enter your generated Client ID and Client Secret.
 
-4. Compile the code
+### 4. Compile the code
 In the repo directory, run the following command to compile the project:
 
 via yarn:
@@ -67,14 +66,14 @@ via npm:
 npm run serve
 ```
 
-5. Upload to a webserver.
+### 5. Upload to a webserver.
 The output of `yarn build` will be created in a folder called `/dist/` - this is the usable version of Nowify which is ready to be added to your web server. You could use Netlify, GitHub Pages, Vercel, or any webserver for this. I use Netlify.
 
 Alternatively, you can use packages to run a local webserver.
 
-*NOTE*: This app uses Environment Variables to keep your Client ID and Secret secure. These will not be added to your
+> *NOTE*: 🚨 This app uses Environment Variables to keep your Client ID and Secret secure. These will not be added to your compiled code, so you must set these within your server. Please consult your server documentation on how to handle these.
 
-6. View on your Pi and play some music.
+### 6. View on your Pi and play some music.
 Now you're ready to go. Open your site on the Raspberry Pi, login, and play some music. I'd recommend disabling the screensaver on your Pi and opening Chromium in kiosk mode:
 
 ```
