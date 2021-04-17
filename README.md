@@ -4,10 +4,10 @@ A simple app to display your currently playing Spotify track on a Raspberry Pi, 
 
 Nowify will:
 
-✅ - Use Spotify Web API to get your current track
-✅ - Only access that and no other data
-✅ - Use Access and Refresh Tokens to ensure that you;re kept logged in between sessions
-✅ - Display the current track artist, cover, and a matching vibrant background colour
+* ✅ - Use Spotify Web API to get your current track
+* ✅ - Only access that and no other data
+* ✅ - Use Access and Refresh Tokens to ensure that you;re kept logged in between sessions
+* ✅ - Display the current track artist, cover, and a matching vibrant background colour
 
 Preview:
 ![Nowify Preview Image 1](assets/preview-1.png?raw=true "Nowify preview image, cover art for the song 'Wherever you go' by The Avalanches and Jamie xx")
