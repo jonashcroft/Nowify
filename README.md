@@ -1,6 +1,8 @@
 # Nowify
 A simple app to display visuals of your current Spotify track. Designed to be used on a Raspberry Pi.
 
+> 🚨 **Note**: This is the old branch! A more modern version of this app has been created and should be viewed on the `main` branch. I will not support this branch.
+
 Preview:
 
 ![Nowify Preview Image 1](assets/preview-1.png?raw=true "Nowfiy - Preview Image")
