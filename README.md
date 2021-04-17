@@ -74,12 +74,23 @@ Alternatively, you can use packages to run a local webserver.
 > *NOTE*: 🚨 This app uses Environment Variables to keep your Client ID and Secret secure. These will not be added to your compiled code, so you must set these within your server. Please consult your server documentation on how to handle these.
 
 ### 6. View on your Pi and play some music.
-Now you're ready to go. Open your site on the Raspberry Pi, login, and play some music. I'd recommend disabling the screensaver on your Pi and opening Chromium in kiosk mode:
+Now you're ready to go. Open your site on the Raspberry Pi, login, and play some music. I'd recommend disabling the screensaver on your Pi and opening Chromium in kiosk mode.
 
+If using Raspbian, to disable screen-off:
+
+Open autostart:
 ```
-@xset s off # disable the screensaver
-@xset -dpms # disable energy saving features
-@xset s noblank # ensure screen doesn't go blank
+sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+```
+
+Add the following 2 commands to what is already there:
+```
+@xset s off
+@xset -dpms
+```
+
+Launch Chromium in kiosk mode (full-screen, no toolbars):
+```
 DISPLAY=:0 chromium-browser -kiosk https://[your-url] # open up chromium to specific web page
 ```
 ---
