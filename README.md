@@ -6,7 +6,7 @@ Nowify will:
 
 * ✅ - Use Spotify Web API to get your current track
 * ✅ - Only access that and no other data
-* ✅ - Use Access and Refresh Tokens to ensure that you;re kept logged in between sessions
+* ✅ - Use Access and Refresh Tokens to ensure that you're kept logged in between sessions
 * ✅ - Display the current track artist, cover, and a matching vibrant background colour
 
 Preview:
@@ -16,7 +16,7 @@ Preview:
 ---
 
 ## How to use:
-Nowify needs a webserver to run. The quickest way to get up and running is to use a Jamstack platform like Netlify, GitHub Pages:
+Nowify needs a webserver to run. The quickest way to get up and running is to use a Jamstack platform like Netlify or GitHub Pages:
 
 * Fork the repository
 * Connect your repo to your platform
@@ -76,7 +76,7 @@ npm run serve
 ```
 
 ### 5. Upload to a webserver.
-The output of `yarn build` will be created in a folder called `/dist/` - this is the usable version of Nowify which is ready to be added to your web server Alternatively, you can use packages to run a local webserver.
+The output of `yarn build` will be created in a folder called `/dist/` - this is the usable version of Nowify which is ready to be added to your web server.
 
 > *NOTE*: 🚨 This app uses Environment Variables to keep your Client ID and Secret secure. These will not be added to your compiled code, so you must set these within your server. Please consult your server documentation on how to handle these.
 
