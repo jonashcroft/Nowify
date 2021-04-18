@@ -16,12 +16,21 @@ Preview:
 ---
 
 ## How to use:
-To use this, you'll need to clone the repo, generate some API keys and run some commands to compile the code.
+Nowify needs a webserver to run. The quickest way to get up and running is to use a Jamstack platform like Netlify, GitHub Pages:
+
+* Fork the repository
+* Connect your repo to your platform
+* Add your Spotify Client ID and Client Secret to environment variables
+* Deploy!
+
+Alternatively, you can clone the repo, compile the code offline, and upload to your own webserver.
 
 To compile the code, you will need a package manager installed. Either [npm](https://www.npmjs.com/get-npm) or [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable). I use yarn.
 
 ### 1. Create Spotify Client keys.
 To allow authorisation to your track data, you'll need to generate client keys. You can do this by logging in to the [Spotify Dashboard](https://developer.spotify.com/dashboard/applications) creating an app.
+
+If you're deploying to a Jamstack platform, add these to your Environment variables using the names defined in `.env.sample`,
 
 When you create your Client keys, you must also set the 'Redirect URI' as the URL of your app, so that Spotify redirects you back to Nowify when you authorise your account. The URI will be some variation of 'http://localhost:8080' or 'https://mywebapp.com'.
 
@@ -67,9 +76,7 @@ npm run serve
 ```
 
 ### 5. Upload to a webserver.
-The output of `yarn build` will be created in a folder called `/dist/` - this is the usable version of Nowify which is ready to be added to your web server. You could use Netlify, GitHub Pages, Vercel, or any webserver for this. I use Netlify.
-
-Alternatively, you can use packages to run a local webserver.
+The output of `yarn build` will be created in a folder called `/dist/` - this is the usable version of Nowify which is ready to be added to your web server Alternatively, you can use packages to run a local webserver.
 
 > *NOTE*: 🚨 This app uses Environment Variables to keep your Client ID and Secret secure. These will not be added to your compiled code, so you must set these within your server. Please consult your server documentation on how to handle these.
 
