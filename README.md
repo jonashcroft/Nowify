@@ -47,6 +47,17 @@ via npm:
 npm install
 ```
 
+**Note:** I've been using **Node 14** for this project during build. It's highly recommended that you use the same version or you may find that some packages will complain during installation.
+
+The easiest method to switch between Node versions would be to have Node installed via [Node Version Manager (NVM)](https://github.com/nvm-sh/nvm) (seriously, if you use Node for development, you need this!).
+
+Once NVM is installed, simply navigate to your Nowify directory and activate the required version in your terminal:
+
+```
+nvm install 14
+nvm use 14
+```
+
 ### 3. Add your Client ID and Client Secret
 Copy the `.env.sample` file to a new file called `.env` and enter your generated Client ID and Client Secret.
 
