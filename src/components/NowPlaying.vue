@@ -198,7 +198,6 @@ export default {
         this.playerResponse.error?.status === 401 ||
         this.playerResponse.error?.status === 400
       ) {
-        window.console.log('throw error')
         this.handleExpiredToken()
 
         return

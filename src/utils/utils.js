@@ -1,6 +1,7 @@
 /**
- * Util: Utilities
- * Global functions that can be used across multiple files.
+ * Utils: Utilities.
+ * - Global functions that can be used across multiple files.
+ * -----------------------------------------------------------------------------
  */
 
 /**

@@ -1,6 +1,7 @@
 /**
  * Util: Props
- * Helper file to keep consistent props across all components.
+ * - Helper file to keep consistent props across all components.
+ * -----------------------------------------------------------------------------
  */
 export default {
   msg: {

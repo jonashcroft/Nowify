@@ -48,11 +48,10 @@ export default {
      */
     this.getUrlAuthCode()
 
+    /**
+     * Refresh token already exists - we must get a new one.
+     */
     if (this.auth.refreshToken) {
-      window.console.log(
-        'refresh token exists, means we need to ask for a new one'
-      )
-
       this.requestAccessTokens('refresh_token')
     }
   },
@@ -70,7 +69,7 @@ export default {
 
     /**
      * Check to see if the URL contains an auth code
-     * returned after the user grants consent from Spotify
+     * returned after the user grants consent from Spotify.
      */
     getUrlAuthCode() {
       const urlAuthCode = currentParams.get('code')
