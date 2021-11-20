@@ -33,11 +33,11 @@ You will need:
 * Spotify Client Keys
 * A device to display Nowify
 
-### Fork this repository
+### 1. Fork this repository
 
 On this page, click on the 'Fork' button in the top-right to create a copy of the repo as-is on your account. Alternatively, you can clone the repo and push to Github.
 
-### 1 Create a new project on Netlify
+### 2. Create a new project on Netlify
 Log in to Netlify and click 'New site from Git'.
 
 If you're doing this for the first time, you will need to authorise your Github account with Netlify by following the instructions.
@@ -48,7 +48,7 @@ Click on 'Deploy site'.
 
 _Note: Nowify should use Node 14. This has been set in the project environment. I've only ever attempted this Netlify, so cannot help you if you use another platform._
 
-### 2. Create Spotify Client keys.
+### 3. Create Spotify Client keys.
 To allow authorisation to your track data, you'll need to generate client keys. You can do this by logging in to the [Spotify Dashboard](https://developer.spotify.com/dashboard/applications) creating an app.
 
 Call the application 'Nowify'.
@@ -59,7 +59,7 @@ You can leave the other settings (Callback URL, Bundle IDs etc) blank.
 
 Copy down the Client Secret and Client ID and save your app in the Spotify Dashboard.
 
-### 3. Add the Client ID and Client Secret to Netlify
+### 4. Add the Client ID and Client Secret to Netlify
 
 Now that we have our Spotify API keys, we must let Nowify know that they exist.
 
@@ -69,100 +69,13 @@ Under 'Environment variables', add two fields. The 'Keys' can be found in the `e
 
 Hit save.
 
-### 4. View Nowify
+### 5. View Nowify
 
 Once the environment variables are in, you can now navigate to your Netlify site. You'll be prompted with a Spotify login button. Do that, and you're good to go!
 
 ---
 
-Alternatively, you can clone the repo, compile the code offline, and upload to your own webserver (more advanced users only).
-
-To compile the code, you will need a package manager installed. Either [npm](https://www.npmjs.com/get-npm) or [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable). I use yarn.
-
-### 1. Create Spotify Client keys.
-To allow authorisation to your track data, you'll need to generate client keys. You can do this by logging in to the [Spotify Dashboard](https://developer.spotify.com/dashboard/applications) creating an app.
-
-If you're deploying to a Jamstack platform, add these to your Environment variables using the names defined in `.env.sample`,
-
-When you create your Client keys, you must also set the 'Redirect URI' as the URL of your app, so that Spotify redirects you back to Nowify when you authorise your account. The URI will be some variation of 'http://localhost:8080' or 'https://mywebapp.com'.
-
-### 2. Clone this repository and install dependencies
-After you clone, navigate to the directory and install the dependencies:
-
-via yarn:
-```
-yarn install
-```
-
-via npm:
-```
-npm install
-```
-
-**Note:** I've been using **Node 14** for this project during build. It's highly recommended that you use the same version or you may find that some packages will complain during installation.
-
-The easiest method to switch between Node versions would be to have Node installed via [Node Version Manager (NVM)](https://github.com/nvm-sh/nvm) (seriously, if you use Node for development, you need this!).
-
-Once NVM is installed, simply navigate to your Nowify directory and activate the required version in your terminal:
-
-```
-nvm install 14
-nvm use 14
-```
-
-### 3. Add your Client ID and Client Secret
-Copy the `.env.sample` file to a new file called `.env` and enter your generated Client ID and Client Secret.
-
-### 4. Compile the code
-In the repo directory, run the following command to compile the project:
-
-via yarn:
-```
-yarn build
-```
-
-via npm:
-```
-npm run build
-```
-
-You can also run the development version locally on your machine:
-
-via yarn:
-```
-yarn serve
-```
-
-via npm:
-```
-npm run serve
-```
-
-### 5. Upload to a webserver.
-The output of `yarn build` will be created in a folder called `/dist/` - this is the usable version of Nowify which is ready to be added to your web server.
-
-> *NOTE*: 🚨 This app uses Environment Variables to keep your Client ID and Secret secure. These will not be added to your compiled code, so you must set these within your server. Please consult your server documentation on how to handle these.
-
-### 6. View on your Pi and play some music.
-Now you're ready to go. Open your site on the Raspberry Pi, login, and play some music. I'd recommend disabling the screensaver on your Pi and opening Chromium in kiosk mode.
-
-If using Raspbian, to disable screen-off:
-
-Open autostart:
-```
-sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
-```
-
-Add the following 2 commands to what is already there:
-```
-@xset s off
-@xset -dpms
-```
-
-Launch Chromium in kiosk mode (full-screen, no toolbars):
-```
-DISPLAY=:0 chromium-browser -kiosk https://[your-url] # open up chromium to specific web page
-```
+Alternatively, you can clone the repo, compile the code offline, and upload to your own webserver (more advanced users only). If you're considering doing this, I'll assume that you somewhat know you're way around build tools.
 ---
 ### Original Write up:
 [https://ashcroft.dev/blog/now-playing-screen-spotify-raspberry-pi-es6/](https://ashcroft.dev/blog/now-playing-screen-spotify-raspberry-pi-es6/)
