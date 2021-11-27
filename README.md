@@ -71,7 +71,7 @@ Hit save.
 
 ### 5. View Nowify
 
-Once the environment variables are in, you can now navigate to your Netlify site. You'll be prompted with a Spotify login button. Do that, and you're good to go!
+Once the environment variables are in, you will have to navigate to your Netlify site overview > Deploys > Trigger Deploy drop-down > click 'Clear cache and deploy site' and wait for deployment to complete. You can now navigate to your Netlify site. You'll be prompted with a Spotify login button. Do that, and you're good to go!
 
 ---
 
