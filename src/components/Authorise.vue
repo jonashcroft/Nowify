@@ -181,6 +181,7 @@ export default {
       searchParams.toString()
       searchParams.append('client_id', this.auth.clientId)
       searchParams.append('response_type', 'code')
+      searchParams.append('redirect_uri', window.location.origin + '/')
       searchParams.append(
         'state',
         [
@@ -199,7 +200,6 @@ export default {
         ].join('-')
       )
       searchParams.append('scope', 'user-read-currently-playing')
-      searchParams.append('redirect_uri', 'https://talktechinfo.netlify.app/')
 
       return `${this.endpoints.auth}?${searchParams.toString()}`
     }
