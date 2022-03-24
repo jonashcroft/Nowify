@@ -104,7 +104,7 @@ export default {
         `${this.auth.clientId}:${this.auth.clientSecret}`
       )
 
-      const res = await fetch(`${this.endpoints.token}`, {
+      const res = await fetch(`${this.endpoints.token +'/'}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
