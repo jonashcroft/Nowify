@@ -9,10 +9,14 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "colorthief": "^2.3.2",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
+    "get-pixels": "^3.3.3",
+    "gsap": "^3.10.4",
     "node-sass": "4.14.1",
     "node-vibrant": "^3.1.4",
+    "quantize": "^1.0.2",
     "spotify-web-api-js": "^1.5.1",
     "vue": "^2.6.11"
   },

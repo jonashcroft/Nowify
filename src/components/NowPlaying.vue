@@ -5,27 +5,53 @@
       class="now-playing"
       :class="getNowPlayingClass()"
     >
-      <div class="now-playing__cover">
+      <div ref="coverDiv" class="now-playing__cover">
         <img
+          ref="trackAlbum"
           :src="player.trackAlbum.image"
           :alt="player.trackTitle"
           class="now-playing__image"
         />
       </div>
       <div class="now-playing__details">
-        <h1 class="now-playing__track" v-text="player.trackTitle"></h1>
-        <h2 class="now-playing__artists" v-text="getTrackArtists"></h2>
+        <h1
+          ref="trackTitle"
+          class="now-playing__track"
+          v-text="player.trackTitle"
+        ></h1>
+        <h2
+          ref="trackArtists"
+          class="now-playing__artists"
+          v-text="getTrackArtists"
+        ></h2>
+        <progress
+          ref="progressBar"
+          max="1"
+          class="now-playing__progressBar"
+          :value="player.progressPercent"
+        ></progress>
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
-      <h1 class="now-playing__idle-heading">No music is playing 😔</h1>
+      <h1 ref="heading" class="now-playing__idle-heading">
+        No music is playing 😔
+      </h1>
+      <h2 ref="secondary" class="now-playing__idle-secondary">
+        💿 Hover your phone over an album cover to get started
+      </h2>
     </div>
   </div>
 </template>
+<script src="node_modules/colorthief/dist/color-thief.umd.js"></script>
 
 <script>
-import * as Vibrant from 'node-vibrant'
+// import * as Vibrant from 'node-vibrant'
+// const ColorThief = require('/color-thief-2.3.2/dist/color-thief.js')
+// import { ColorThief } from '/color-thief-2.3.2/dist/color-thief.js'
+// const ColorThief = require('colorthief')
+import ColorThief from '/node_modules/colorthief/dist/color-thief.mjs'
 
+import { gsap } from 'gsap'
 import props from '@/utils/props.js'
 
 export default {
@@ -106,6 +132,11 @@ export default {
         }
 
         data = await response.json()
+        // console.log(data)
+        // console.log(data.progress_ms)
+        // console.log(data.progress_ms / 1000)
+        // console.log(data.timestamp / 60)
+
         this.playerResponse = data
       } catch (error) {
         this.handleExpiredToken()
@@ -142,13 +173,66 @@ export default {
       /**
        * Run node-vibrant to get colours.
        */
-      Vibrant.from(this.player.trackAlbum.image)
-        .quality(1)
-        .clearFilters()
-        .getPalette()
-        .then(palette => {
-          this.handleAlbumPalette(palette)
+      console.log('track album', this.player.trackAlbum)
+      // Vibrant.from(this.player.trackAlbum.image)
+      //   .quality(1)
+      //   .clearFilters()
+      //   .getPalette()
+      //   .then(palette => {
+      //     this.handleAlbumPalette(palette)
+      //   })
+      // console.log('ColorThief', ColorThief)
+
+      // const colorThief = new ColorThief()
+      // console.log('colorThief', colorThief)
+      // const img = document.querySelector('img')
+      // console.log(img)
+      // let primaryCol
+      // // Make sure image is finished loading
+      // if (img.complete) {
+      //   primaryCol = ColorThief.getColor(img)
+      // } else {
+      //   img.addEventListener('load', function() {
+      //     ColorThief.getColor(img)
+      //   })
+      // }
+
+      // const img = Promise.resolve(process.cwd(), this.player.trackAlbum)
+      // const img = document.querySelector('img')
+      const colorThief = new ColorThief()
+      // const palette = colorThief.getPalette(this.$refs.trackAlbum.image)
+      const img = document.querySelector('img')
+
+      console.log(img)
+      const imageURL = img.src
+      let googleProxyURL =
+        'https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url='
+
+      img.crossOrigin = 'Anonymous'
+      document.querySelector('img').src =
+        googleProxyURL + encodeURIComponent(imageURL)
+      img.src = googleProxyURL + encodeURIComponent(imageURL)
+      console.log(img)
+      const handleFunc = this.handleAlbumPalette
+
+      let primaryCol
+      if (img.complete) {
+        console.log('iother case e e')
+        primaryCol = colorThief.getColor(img)
+        this.handleAlbumPalette(primaryCol)
+      } else {
+        img.addEventListener('load', function() {
+          console.log('in this')
+          console.log(img.complete)
+          primaryCol = colorThief.getColor(img)
+          console.log(primaryCol)
+          handleFunc(primaryCol)
         })
+      }
+
+      // const primaryCol = colorThief.getColor(this.player.trackAlbum.image)
+      console.log('primaryCol', primaryCol)
+      this.handleAlbumPalette(primaryCol)
     },
 
     /**
@@ -183,7 +267,10 @@ export default {
         '--color-text-primary',
         this.colourPalette.text
       )
-
+      document.documentElement.style.setProperty(
+        '--color-text-alternate',
+        this.colourPalette.text === '#000000' ? '#ffffff' : '#000000'
+      )
       document.documentElement.style.setProperty(
         '--colour-background-now-playing',
         this.colourPalette.background
@@ -203,6 +290,7 @@ export default {
         return
       }
 
+      console.log(this.playerResponse)
       /**
        * Player is active, but user has paused.
        */
@@ -217,18 +305,22 @@ export default {
        * one, we don't want to update the DOM yet.
        */
       if (this.playerResponse.item?.id === this.playerData.trackId) {
+        this.playerData.progressPercent =
+          this.playerResponse.progress_ms / this.playerResponse.item.duration_ms
         return
       }
 
       /**
        * Store the current active track.
        */
+      // console.log('duration ms', this.playerResponse.item.duration_ms)
       this.playerData = {
         playing: this.playerResponse.is_playing,
         trackArtists: this.playerResponse.item.artists.map(
           artist => artist.name
         ),
         trackTitle: this.playerResponse.item.name,
+        progressPercent: 0,
         trackId: this.playerResponse.item.id,
         trackAlbum: {
           title: this.playerResponse.item.album.name,
@@ -243,22 +335,49 @@ export default {
      * - Get and store random colour combination.
      */
     handleAlbumPalette(palette) {
-      let albumColours = Object.keys(palette)
-        .filter(item => {
-          return item === null ? null : item
-        })
-        .map(colour => {
-          return {
-            text: palette[colour].getTitleTextColor(),
-            background: palette[colour].getHex()
-          }
-        })
+      const componentToHex = c => {
+        var hex = c.toString(16)
+        return hex.length == 1 ? '0' + hex : hex
+      }
+      const rgbToHex = (r, g, b) => {
+        return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b)
+      }
 
-      this.swatches = albumColours
+      // console.log(palette)
+      // let albumColours = Object.keys(palette)
+      //   .filter(item => {
+      //     return item === null ? null : item
+      //   })
+      //   .map(colour => {
+      //     // console.log(colour)
+      //     // console.log(palette[colour].getTitleTextColor())
+      //     // console.log(palette[colour].getHex())
+      //     return {
+      //       text: palette[colour].getTitleTextColor(),
+      //       background: palette[colour].getHex()
+      //     }
+      //   })
 
-      this.colourPalette =
-        albumColours[Math.floor(Math.random() * albumColours.length)]
+      // this.swatches = albumColours
+      // console.log(albumColours)
+      // console.log(albumColours.length)
+      // this.colourPalette = albumColours[Math.floor(albumColours.length / 2)]
+      console.log('inside handle')
+      console.log(rgbToHex(palette[0], palette[1], palette[2]))
+      this.colourPalette = {
+        text:
+          palette[0] * 0.299 + palette[1] * 0.587 + palette[2] * 0.114 > 186
+            ? '#000000'
+            : '#ffffff',
+        background: rgbToHex(palette[0], palette[1], palette[2])
+      }
+      gsap.to('.now-playing', {
+        color: this.colourPalette.text,
+        backgroundColor: this.colourPalette.background,
+        duration: 1
+      })
 
+      this.setAppColours()
       this.$nextTick(() => {
         this.setAppColours()
       })
@@ -294,6 +413,27 @@ export default {
      */
     playerData: function() {
       this.$emit('spotifyTrackUpdated', this.playerData)
+      console.log('the track has changed')
+      gsap.fromTo(
+        [this.$refs.trackTitle, this.$refs.trackArtists],
+        {
+          autoAlpha: 0,
+          stagger: 0.5,
+          scale: 0.95
+          // duration: 2
+        },
+        {
+          autoAlpha: 1,
+          stagger: 0.5,
+          scale: 1,
+          duration: 1
+        }
+      )
+      gsap.to('.now-playing', {
+        color: this.colourPalette.text,
+        backgroundColor: this.colourPalette.background,
+        duration: 1
+      })
 
       this.$nextTick(() => {
         this.getAlbumColours()
