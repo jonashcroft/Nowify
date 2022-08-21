@@ -1,7 +1,13 @@
 {
   "name": "Nowify",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": true,
+  "bugs": "https://github.com/jonashcroft/Nowify/issues/",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/jonashcroft/Nowify/",
+    "type": "git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
