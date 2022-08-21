@@ -28,32 +28,34 @@ Nowify needs a webserver to run. The quickest way to get up and running is to us
 
 **Prerequisites:**
 You will need:
-* A Github account
+* A GitHub account
 * A [Netlify](https://netlify.com) account
 * Spotify Client Keys
 * A device to display Nowify
 
 ### 1. Fork this repository
 
-On this page, click on the 'Fork' button in the top-right to create a copy of the repo as-is on your account. Alternatively, you can clone the repo and push to Github.
+On this page, click on the 'Fork' button in the top-right to create a copy of the repo as-is on your account. Alternatively, you can clone the repo and push to GitHub.
 
 ### 2. Create a new project on Netlify
 Log in to Netlify and click 'New site from Git'.
 
-If you're doing this for the first time, you will need to authorise your Github account with Netlify by following the instructions.
+If you're doing this for the first time, you will need to authorise your GitHub account with Netlify by following the instructions.
 
-Once authorised, follow the on-screen instructions to connect your repository. You should be fine to leave the default settings as-is here.
+Once authorised, follow the on-screen instructions to connect your repository. You should be fine to leave the default settings here as-is.
 
 Click on 'Deploy site'.
 
 _Note: Nowify should use Node 14. This has been set in the project environment. I've only ever attempted this Netlify, so cannot help you if you use another platform._
 
 ### 3. Create Spotify Client keys.
-To allow authorisation to your track data, you'll need to generate client keys. You can do this by logging in to the [Spotify Dashboard](https://developer.spotify.com/dashboard/applications) creating an app.
+To allow authorisation to your track data, you'll need to generate Spotify API keys. You can do this by logging in to the [Spotify Dashboard](https://developer.spotify.com/dashboard/applications) creating an app.
 
 Call the application 'Nowify'.
 
-Set the 'Redirect URI' as the URL of your project in Netlify. This must be set else Spotify won't authorise Nowify.
+Set the _Redirect URI_ as the URL of your project in Netlify. This must be set else Spotify won't authorise Nowify.
+
+**Important:** The _Redirect URI_ entered in this field must match the URL of your Netlify site exactly, or you'll receive authorisation errors. A common issue is that Spotify will automatically add a trailing slash to the URL upon saving. For example: `https://example.netlify.com` vs `https://example.netlify.com/`.
 
 You can leave the other settings (Callback URL, Bundle IDs etc) blank.
 
@@ -65,7 +67,7 @@ Now that we have our Spotify API keys, we must let Nowify know that they exist.
 
 To do this, navigate to Netlify > Site Settings > Build & Deploy > Environment
 
-Under 'Environment variables', add two fields. The 'Keys' can be found in the `env.sample` file and the values will be the Client ID and Client Secret, respectively.
+Under _Environment variables_, add two fields. The _Keys_ can be found in the `env.sample` file and the values will be the _Client ID_ and _Client Secret_, respectively.
 
 Hit save.
 
@@ -76,7 +78,9 @@ Once the environment variables are in, you will have to navigate to your Netlify
 ---
 
 Alternatively, you can clone the repo, compile the code offline, and upload to your own webserver (more advanced users only). If you're considering doing this, I'll assume that you somewhat know you're way around build tools.
+
 ---
+
 ### Original Write up:
 [https://ashcroft.dev/blog/now-playing-screen-spotify-raspberry-pi-es6/](https://ashcroft.dev/blog/now-playing-screen-spotify-raspberry-pi-es6/)
 
