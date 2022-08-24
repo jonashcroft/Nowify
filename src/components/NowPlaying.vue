@@ -56,6 +56,9 @@ export default {
     getTrackArtists() {
       return this.player.trackArtists.join(', ')
     }
+    getAlbumYear() {
+      return this.player.trackYear.join()
+    }
   },
 
   mounted() {
@@ -163,6 +166,7 @@ export default {
         trackArtists: [],
         trackId: '',
         trackTitle: ''
+        trackYear: ''
       }
     },
 
@@ -231,9 +235,9 @@ export default {
         ),
         trackTitle: this.playerResponse.item.name,
         trackId: this.playerResponse.item.id,
+        trackYear: this.playerResponse.album.release_date,
         trackAlbum: {
           title: this.playerResponse.item.album.name,
-          year: this.playerResponse.item.album.release_date,
           image: this.playerResponse.item.album.images[0].url
         }
       }
