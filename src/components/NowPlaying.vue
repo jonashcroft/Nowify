@@ -55,7 +55,7 @@ export default {
      */
     getTrackArtists() {
       return this.player.trackArtists.join(', ')
-    }
+    },
     getAlbumYear() {
       return this.player.trackYear.join()
     }
