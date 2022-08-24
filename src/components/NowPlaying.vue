@@ -165,7 +165,7 @@ export default {
         trackAlbum: {},
         trackArtists: [],
         trackId: '',
-        trackTitle: ''
+        trackTitle: '',
         trackYear: ''
       }
     },
