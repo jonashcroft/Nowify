@@ -15,8 +15,10 @@
       <div class="now-playing__details">
         <h1 class="now-playing__track" v-text="player.trackTitle"></h1>
         <h2 class="now-playing__artists" v-text="getTrackArtists"></h2>
-        <h2 class="now-playing__year" v-text="player.trackYear"></h2>
         <h2 class="now-playing__album" v-text="player.trackAlbumName"></h2>
+        <h2 class="now-playing__year" v-text="player.trackYear"></h2>
+        <h2 class="now-playing__year" v-text=""></h2>
+        <h2 class="now-playing__year">Durata <v-text="player.trackElapsed"></h2>
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
@@ -165,6 +167,7 @@ export default {
         trackId: '',
         trackTitle: '',
         trackYear: '',
+        trackElapsed: '',
         trackAlbumName: ''
       }
     },
@@ -234,8 +237,9 @@ export default {
         ),
         trackTitle: this.playerResponse.item.name,
         trackId: this.playerResponse.item.id,
-        trackYear: this.playerResponse.item.album.release_date,
+        trackYear: this.playerResponse.item.album.release_date_precision,
         trackAlbumName: this.playerResponse.item.album.name,
+        trackElapsed: this.playerResponse.progress_ms,
         trackAlbum: {
           title: this.playerResponse.item.album.name,
           image: this.playerResponse.item.album.images[0].url
