@@ -15,7 +15,8 @@
       <div class="now-playing__details">
         <h1 class="now-playing__track" v-text="player.trackTitle"></h1>
         <h2 class="now-playing__artists" v-text="getTrackArtists"></h2>
-        <h2 class="now-playing__album" v-text="getAlbumYear"></h2>
+        <h2 class="now-playing__year" v-text="player.trackYear"></h2>
+        <h2 class="now-playing__album" v-text="player.trackAlbumName"></h2>
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
@@ -55,9 +56,6 @@ export default {
      */
     getTrackArtists() {
       return this.player.trackArtists.join(', ')
-    },
-    getAlbumYear() {
-      return this.player.trackYear.join()
     }
   },
 
@@ -166,7 +164,8 @@ export default {
         trackArtists: [],
         trackId: '',
         trackTitle: '',
-        trackYear: ''
+        trackYear: '',
+        trackAlbumName: ''
       }
     },
 
@@ -236,6 +235,7 @@ export default {
         trackTitle: this.playerResponse.item.name,
         trackId: this.playerResponse.item.id,
         trackYear: this.playerResponse.album.release_date,
+        trackAlbumName: this.playerResponse.item.album.name,
         trackAlbum: {
           title: this.playerResponse.item.album.name,
           image: this.playerResponse.item.album.images[0].url
