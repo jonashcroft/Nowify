@@ -15,8 +15,8 @@
       <div class="now-playing__details">
         <h1 class="now-playing__track" v-text="player.trackTitle"></h1>
         <h2 class="now-playing__artists" v-text="getTrackArtists"></h2>
-        <h2 class="now-playing__album" v-text="player.trackAlbumName"></h2>
-        <h2 class="now-playing__year" v-text="player.trackYear"></h2>
+        <h3 class="now-playing__album" v-text="player.trackAlbumName"></h2>
+        <h3 class="now-playing__year" v-text="player.trackYear"></h2>
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
