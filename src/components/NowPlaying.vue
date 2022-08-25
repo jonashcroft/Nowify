@@ -234,7 +234,7 @@ export default {
         ),
         trackTitle: this.playerResponse.item.name,
         trackId: this.playerResponse.item.id,
-        trackYear: this.playerResponse.item.album.release_date_precision,
+        trackYear: this.playerResponse.item.album.release_date,
         trackAlbumName: this.playerResponse.item.album.name,
         trackAlbum: {
           title: this.playerResponse.item.album.name,
