@@ -1,6 +1,6 @@
 <template>
   <div class="authorise">
-    <h1 class="authorise__heading">Krokify_Pro</h1>
+    <h1 class="authorise__heading">Krokify Pro</h1>
 
     <p class="authorise__copy">
      Loggati, al resto ci penso io 🔝🔝
