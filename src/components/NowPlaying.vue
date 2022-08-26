@@ -17,7 +17,6 @@
         <h2 class="now-playing__artists" v-text="getTrackArtists"></h2>
         <h3 class="now-playing__album" v-text="player.trackAlbumName"></h3>
         <h3 class="now-playing__year" v-text="player.trackYear"></h3>
-        <h3 class="now-playing__tempo" v-text="player.trackTempo"></h3>
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
@@ -166,8 +165,7 @@ export default {
         trackId: '',
         trackTitle: '',
         trackYear: '',
-        trackAlbumName: '',
-        trackTempo: ''
+        trackAlbumName: ''
       }
     },
 
@@ -236,7 +234,6 @@ export default {
         ),
         trackTitle: this.playerResponse.item.name,
         trackId: this.playerResponse.item.id,
-        trackTempo: this.playerResponse.track.tempo,
         trackYear: this.playerResponse.item.album.release_date.substring(0,4),
         trackAlbumName: this.playerResponse.item.album.name,
         trackAlbum: {
