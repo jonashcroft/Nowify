@@ -236,7 +236,7 @@ export default {
         ),
         trackTitle: this.playerResponse.item.name,
         trackId: this.playerResponse.item.id,
-        trackTempo: this.playerResponse.track.tempo.toString(),
+        trackTempo: this.playerResponse.track.tempo,
         trackYear: this.playerResponse.item.album.release_date.substring(0,4),
         trackAlbumName: this.playerResponse.item.album.name,
         trackAlbum: {
