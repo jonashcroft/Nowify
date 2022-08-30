@@ -21,7 +21,7 @@
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
       <h2 class="now-playing__idle-heading">Spotify in attesa di pezzoni 😎</h2>
-      <h2 class="now-playing__idle-heading" v-text="time"</h2>
+      <h2 class="now-playing__idle-heading" v-text="time"></h2>
     </div>
   </div>
 </template>
