@@ -31,7 +31,6 @@ import * as Vibrant from 'node-vibrant'
 
 import props from '@/utils/props.js'
 
-`use strict`
 var datetime = new Date().toDateString();
 document.getElementById("time").textContent = datetime;
 
