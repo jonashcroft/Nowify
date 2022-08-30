@@ -21,7 +21,6 @@
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
       <h2 class="now-playing__idle-heading">Spotify in attesa di pezzoni 😎</h2>
-      <h2 class="now-playing__idle-heading" v-text="time"></h2>
     </div>
   </div>
 </template>
@@ -30,9 +29,6 @@
 import * as Vibrant from 'node-vibrant'
 
 import props from '@/utils/props.js'
-
-var datetime = new Date().toDateString();
-document.getElementById("time").textContent = datetime;
 
 export default {
   name: 'NowPlaying',
