@@ -243,7 +243,7 @@ export default {
      * - Map data to readable format
      * - Get and store random colour combination.
      */
-    /*handleAlbumPalette(palette) {
+    handleAlbumPalette(palette) {
       let albumColours = Object.keys(palette)
         .filter(item => {
           return item === null ? null : item
@@ -264,33 +264,8 @@ export default {
         this.setAppColours()
       })
     },
-    */
-    handleAlbumPalette(palette) {
-  let albumColours = Object.keys(palette)
-    .filter(item => item !== null)
-    .map(colour => {
-      return {
-        text: palette[colour].getTitleTextColor(),
-        background: palette[colour].getHex()
-      };
-    });
-
-  this.swatches = albumColours;
-
-  // Randomly select a color from the albumColours array
-  const randomIndex = Math.floor(Math.random() * albumColours.length);
-  const randomColor = albumColours[randomIndex].background;
-
-  // Create a darker version of the random color
-  const darkerColor = chroma(randomColor).darken(2).hex();
-
-  // Set the colourPalette to the darker color
-  this.colourPalette = darkerColor;
-
-  this.$nextTick(() => {
-    this.setAppColours();
-  });
-},
+    
+   
 
 
     /**
