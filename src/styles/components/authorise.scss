@@ -6,8 +6,10 @@
  */
 .authorise {
   align-items: center;
-  background-color: var(--colour-background-now-playing);
-  color: var(--color-text-primary);
+  // background-color: var(--colour-background-now-playing);
+  background-color: black;
+  // color: var(--color-text-primary);
+  color:  rgb(240, 240, 240);
   display: flex;
   flex-flow: column nowrap;
   height: 100%;
@@ -16,7 +18,7 @@
 
   &__heading {}
   &__copy {
-    max-width: 480px;
+    max-width: 960px;
     text-align: center;
     margin: 0 0 var(--spacing-m) 0;
   }
