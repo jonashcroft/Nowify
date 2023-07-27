@@ -299,7 +299,6 @@ export default {
       this.$emit('requestRefreshToken')
     },
   
-  };
   watch: {
     /**
      * Watch the auth object returned from Spotify.
