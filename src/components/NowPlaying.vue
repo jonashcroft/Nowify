@@ -190,34 +190,10 @@ export default {
         this.colourPalette.background
       )
     },
-export default {
-  computed: {
-    darkerBackground() {
-      // Get the current value of --colour-background-now-playing
-      const currentColor = getComputedStyle(document.documentElement).getPropertyValue('--colour-background-now-playing').trim();
 
-      // Function to get a darker color
-      function getDarkerColor(hexColor, darknessLevel) {
-        const red = parseInt(hexColor.substr(1, 2), 16);
-        const green = parseInt(hexColor.substr(3, 2), 16);
-        const blue = parseInt(hexColor.substr(5, 2), 16);
-
-        const darkerRed = Math.max(red - darknessLevel, 0);
-        const darkerGreen = Math.max(green - darknessLevel, 0);
-        const darkerBlue = Math.max(blue - darknessLevel, 0);
-
-        const darkerHex = `#${(darkerRed << 16 | darkerGreen << 8 | darkerBlue).toString(16).padStart(6, '0')}`;
-
-        return darkerHex;
-      }
-
-      // Darken the background color by, for example, 50 units
-      const darkerBackgroundColor = getDarkerColor(currentColor, 50);
-      return darkerBackgroundColor;
-    }
-  },
-  // Other component options...
-};
+    /**
+     * Handle newly updated Spotify Tracks.
+     */
     handleNowPlaying() {
       if (
         this.playerResponse.error?.status === 401 ||
@@ -267,7 +243,7 @@ export default {
      * - Map data to readable format
      * - Get and store random colour combination.
      */
-    handleAlbumPalette(palette) {
+    /*handleAlbumPalette(palette) {
       let albumColours = Object.keys(palette)
         .filter(item => {
           return item === null ? null : item
@@ -287,9 +263,54 @@ export default {
       this.$nextTick(() => {
         this.setAppColours()
       })
+    },*/
+
+    handleAlbumPalette(palette) {
+      let albumColours = Object.keys(palette)
+        .filter(item => item !== null)
+        .map(colour => {
+          return {
+            text: palette[colour].getTitleTextColor(),
+            background: palette[colour].getHex()
+          };
+        });
+    
+      this.swatches = albumColours;
+    
+      // Randomly select a color from the albumColours array
+      const randomIndex = Math.floor(Math.random() * albumColours.length);
+      const randomColor = albumColours[randomIndex].background;
+    
+      // Create a darker version of the random color
+      const darkerColor = this.getDarkerColor(randomColor);
+    
+      // Set the colourPalette to the darker color
+      this.colourPalette = darkerColor;
+    
+      this.$nextTick(() => {
+        this.setAppColours();
+      });
+    },
+    methods: {
+      getDarkerColor(hexColor, amount = 0.6) {
+        // Convert the hexadecimal color to RGB format
+        const red = parseInt(hexColor.substring(1, 3), 16);
+        const green = parseInt(hexColor.substring(3, 5), 16);
+        const blue = parseInt(hexColor.substring(5, 7), 16);
+    
+        // Calculate the darker RGB components
+        const darkerRed = Math.round(red * amount);
+        const darkerGreen = Math.round(green * amount);
+        const darkerBlue = Math.round(blue * amount);
+    
+        // Convert the darker RGB components back to hexadecimal format
+        const darkerHex = `#${(darkerRed << 16 | darkerGreen << 8 | darkerBlue).toString(16).padStart(6, '0')}`;
+    
+        return darkerHex;
+      },
+      // ... other methods ...
     },
 
-    
     
    
 
