@@ -5,7 +5,6 @@ import chroma from 'chroma-js';
       v-if="player.playing"
       class="now-playing"
       :class="getNowPlayingClass()"
-      :style="{ backgroundColor: darkerBackground }"
     >
       <div class="now-playing__cover">
         <img
@@ -191,6 +190,8 @@ export default {
         this.colourPalette.background
       )
     },
+export default {
+  computed: {
     darkerBackground() {
       // Get the current value of --colour-background-now-playing
       const currentColor = getComputedStyle(document.documentElement).getPropertyValue('--colour-background-now-playing').trim();
