@@ -215,6 +215,8 @@ export default {
       return darkerBackgroundColor;
     }
   },
+  // Other component options...
+};
     handleNowPlaying() {
       if (
         this.playerResponse.error?.status === 401 ||
