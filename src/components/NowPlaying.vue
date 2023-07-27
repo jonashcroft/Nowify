@@ -264,51 +264,50 @@ export default {
       })
     },
     */
-  handleAlbumPalette(palette) {
-    let albumColours = Object.keys(palette)
-    .filter(item => item !== null)
-    .map(colour => {
-      return {
-        text: palette[colour].getTitleTextColor(),
-        background: palette[colour].getHex()
-      }
-    })
-
-  this.swatches = albumColours
-
-  // Randomly select a color from the albumColours array
-  const randomIndex = Math.floor(Math.random() * albumColours.length);
-  const randomColor = albumColours[randomIndex].background;
-
-  // Convert the random color to RGB format
-  const rgbColor = this.hexToRgb(randomColor);
-
-  // Create a darker version of the RGB color
-  const darkerRGB = rgbColor.map(component => Math.round(component * 0.6));
-
-  // Convert the darker RGB color back to a hex format
-  const darkerHex = this.rgbToHex(...darkerRGB);
-
-  // Set the colourPalette to the darker color
-  this.colourPalette = darkerHex;
-
-  this.$nextTick(() => {
-    this.setAppColours();
-  });
-},
-methods: {
-  hexToRgb(hex) {
-    const bigint = parseInt(hex.slice(1), 16);
-    const r = (bigint >> 16) & 255;
-    const g = (bigint >> 8) & 255;
-    const b = bigint & 255;
-    return [r, g, b];
-  },
-  rgbToHex(r, g, b) {
-    return `#${((r << 16) + (g << 8) + b).toString(16).padStart(6, '0')}`;
-  },
+    handleAlbumPalette(palette) {
+      let albumColours = Object.keys(palette)
+      .filter(item => item !== null)
+      .map(colour => {
+        return {
+          text: palette[colour].getTitleTextColor(),
+          background: palette[colour].getHex()
+        }
+      })
   
-}
+    this.swatches = albumColours
+  
+    // Randomly select a color from the albumColours array
+    const randomIndex = Math.floor(Math.random() * albumColours.length);
+    const randomColor = albumColours[randomIndex].background;
+  
+    // Convert the random color to RGB format
+    const rgbColor = this.hexToRgb(randomColor);
+  
+    // Create a darker version of the RGB color
+    const darkerRGB = rgbColor.map(component => Math.round(component * 0.6));
+  
+    // Convert the darker RGB color back to a hex format
+    const darkerHex = this.rgbToHex(...darkerRGB);
+  
+    // Set the colourPalette to the darker color
+    this.colourPalette = darkerHex;
+  
+    this.$nextTick(() => {
+      this.setAppColours();
+    });
+  },
+  methods: {
+    hexToRgb(hex) {
+      const bigint = parseInt(hex.slice(1), 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return [r, g, b];
+    },
+    rgbToHex(r, g, b) {
+      return `#${((r << 16) + (g << 8) + b).toString(16).padStart(6, '0')}`;
+    },
+  }
 
 
     /**
