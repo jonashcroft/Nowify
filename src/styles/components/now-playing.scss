@@ -6,7 +6,7 @@
  */
 .now-playing {
   // background-color: var(--colour-background-now-playing);
-  background-color: hsl(var(--colour-background-now-playing-h), var(--colour-background-now-playing-s), 20%);
+  background-color: rgb(calc(var(--colour-background-now-playing-r) * 0.5),calc(var(--colour-background-now-playing-g) * 0.5),calc(var(--colour-background-now-playing-b) * 0.5));
   // color: var(--color-text-primary);
   color:  rgb(240, 240, 240);
   display: flex;
