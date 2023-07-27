@@ -138,7 +138,7 @@ export default {
       if (!this.player.trackAlbum?.image) {
         return
       }
-
+/*var(--colour-background-now-playing)
       /**
        * Run node-vibrant to get colours.
        */
@@ -257,7 +257,7 @@ export default {
       this.swatches = albumColours
 
       this.colourPalette =
-        albumColours[Math.floor(Math.random() * albumColours.length)]
+        albumColours[Math.floor((Math.random() * albumColours.length)-50)]
 
       this.$nextTick(() => {
         this.setAppColours()
