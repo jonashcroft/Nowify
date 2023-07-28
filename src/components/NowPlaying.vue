@@ -301,18 +301,14 @@ export default {
     /**
      * Watch our locally stored track data.
      */
-    playerData: {
-      this.$emit('spotifyTrackUpdated', this.playerData)
+    playerData: function() {
       handler(newVal, oldVal) {
       if (newVal.trackId !== oldVal.trackId) {
         // The trackId has changed, indicating a new song is playing
         this.getAlbumColours();
         // Add any other actions you want to perform when the song changes.
       }
-    },
-    this.$nextTick(() => {
-        this.getAlbumColours()
-      })
+    }
     deep: true
     }
   },
