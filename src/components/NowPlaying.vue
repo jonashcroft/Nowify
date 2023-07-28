@@ -269,9 +269,7 @@ export default {
     },
 
     
-   
-
-
+  
     /**
      * Handle an expired access token from Spotify.
      */
@@ -301,15 +299,15 @@ export default {
     /**
      * Watch our locally stored track data.
      */
-    playerData: function() {
-      handler(newVal, oldVal) {
-      if (newVal.trackId !== oldVal.trackId) {
+    playerData: {
+      handler: function(newVal, oldVal) {
+        if (newVal.trackId !== oldVal.trackId) {
         // The trackId has changed, indicating a new song is playing
-        this.getAlbumColours();
+          this.getAlbumColours();
         // Add any other actions you want to perform when the song changes.
-      }
-    }
-    deep: true
+        }
+      },
+      deep: true
     }
   },
 
