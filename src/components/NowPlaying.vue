@@ -98,17 +98,10 @@ export default {
         if (response.status === 204) {
           data = this.getEmptyPlayer()
           this.playerData = data
-          this.$emit('spotifyTrackUpdated', data)
+          
           this.$nextTick(() => {
             this.$emit('spotifyTrackUpdated', data)
           })
-          this.$nextTick(() => {
-            this.$emit('spotifyTrackUpdated', data)
-          })
-          this.$nextTick(() => {
-            this.$emit('spotifyTrackUpdated', data)
-          })
-
           return
         }
 
@@ -119,16 +112,10 @@ export default {
 
         data = this.getEmptyPlayer()
         this.playerData = data
-        this.$emit('spotifyTrackUpdated', data)
         this.$nextTick(() => {
           this.$emit('spotifyTrackUpdated', data)
         })
-        this.$nextTick(() => {
-          this.$emit('spotifyTrackUpdated', data)
-        })
-        this.$nextTick(() => {
-          this.$emit('spotifyTrackUpdated', data)
-        })
+        
       }
     },
 
@@ -162,12 +149,9 @@ export default {
         .then(palette => {
           this.handleAlbumPalette(palette)
         })
-        .then(palette => {
-          this.handleAlbumPalette(palette)
-        })
-        .then(palette => {
-          this.handleAlbumPalette(palette)
-        })
+        this.setAppColours();
+        
+        
     },
 
     /**
@@ -218,7 +202,7 @@ export default {
         this.playerResponse.error?.status === 400
       ) {
         this.handleExpiredToken()
-        this.handleExpiredToken()
+        
 
         return
       }
@@ -317,16 +301,22 @@ export default {
     /**
      * Watch our locally stored track data.
      */
-    playerData: function() {
+    playerData: {
       this.$emit('spotifyTrackUpdated', this.playerData)
-      this.$emit('spotifyTrackUpdated', this.playerData)
-      this.getAlbumColours()
-      this.$nextTick(() => {
+      handler(newVal, oldVal) {
+      if (newVal.trackId !== oldVal.trackId) {
+        // The trackId has changed, indicating a new song is playing
+        this.getAlbumColours();
+        // Add any other actions you want to perform when the song changes.
+      }
+    },
+    this.$nextTick(() => {
         this.getAlbumColours()
       })
+    deep: true
     }
-  }
-}
+  },
+
 </script>
 
 <style src="@/styles/components/now-playing.scss" lang="scss" scoped></style>
