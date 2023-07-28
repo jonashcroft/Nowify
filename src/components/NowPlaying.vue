@@ -300,7 +300,7 @@ export default {
      * Watch our locally stored track data.
      */
     playerData: {
-      handler: function(newVal, oldVal) {
+      handler: function (newVal, oldVal) {
         if (newVal.trackId !== oldVal.trackId) {
         // The trackId has changed, indicating a new song is playing
           this.getAlbumColours();
@@ -309,8 +309,7 @@ export default {
       },
       deep: true
     }
-  },
-
+  }
+}
 </script>
-
 <style src="@/styles/components/now-playing.scss" lang="scss" scoped></style>
