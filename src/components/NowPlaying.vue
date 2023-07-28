@@ -1,4 +1,4 @@
-import chroma from 'chroma-js';
+
 <template>
   <div id="app">
     <div
@@ -98,10 +98,11 @@ export default {
         if (response.status === 204) {
           data = this.getEmptyPlayer()
           this.playerData = data
-          
+
           this.$nextTick(() => {
             this.$emit('spotifyTrackUpdated', data)
           })
+
           return
         }
 
@@ -112,10 +113,11 @@ export default {
 
         data = this.getEmptyPlayer()
         this.playerData = data
+
         this.$nextTick(() => {
           this.$emit('spotifyTrackUpdated', data)
         })
-        
+
       }
     },
 
@@ -149,9 +151,9 @@ export default {
         .then(palette => {
           this.handleAlbumPalette(palette)
         })
-        this.setAppColours();
-        
-        
+     this.setAppColours();
+
+
     },
 
     /**
@@ -175,7 +177,7 @@ export default {
       clearInterval(this.pollPlaying)
       this.pollPlaying = setInterval(() => {
         this.getNowPlaying()
-      }, 1250)
+      }, 1000)
     },
 
     /**
@@ -201,8 +203,9 @@ export default {
         this.playerResponse.error?.status === 401 ||
         this.playerResponse.error?.status === 400
       ) {
+
         this.handleExpiredToken()
-        
+
 
         return
       }
@@ -269,7 +272,9 @@ export default {
     },
 
     
-  
+   
+
+
     /**
      * Handle an expired access token from Spotify.
      */
@@ -300,7 +305,7 @@ export default {
      * Watch our locally stored track data.
      */
     playerData: {
-      handler: function (newVal, oldVal) {
+      handler: function(newVal, oldVal) {
         if (newVal.trackId !== oldVal.trackId) {
         // The trackId has changed, indicating a new song is playing
           this.getAlbumColours();
@@ -308,8 +313,9 @@ export default {
         }
       },
       deep: true
-    }
+    },
   }
 }
 </script>
+
 <style src="@/styles/components/now-playing.scss" lang="scss" scoped></style>
