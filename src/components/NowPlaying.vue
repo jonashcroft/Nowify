@@ -98,7 +98,7 @@ export default {
         if (response.status === 204) {
           data = this.getEmptyPlayer()
           this.playerData = data
-
+          this.$emit('spotifyTrackUpdated', data)
           this.$nextTick(() => {
             this.$emit('spotifyTrackUpdated', data)
           })
@@ -119,7 +119,7 @@ export default {
 
         data = this.getEmptyPlayer()
         this.playerData = data
-
+        this.$emit('spotifyTrackUpdated', data)
         this.$nextTick(() => {
           this.$emit('spotifyTrackUpdated', data)
         })
@@ -321,7 +321,7 @@ export default {
     playerData: function() {
       this.$emit('spotifyTrackUpdated', this.playerData)
       this.$emit('spotifyTrackUpdated', this.playerData)
-
+      this.getAlbumColours()
       this.$nextTick(() => {
         this.getAlbumColours()
       })
