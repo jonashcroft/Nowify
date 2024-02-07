@@ -1,67 +1,57 @@
 <template>
-    <div id="slider">
-        <div class="slider">
-            <ul class="slides" :style="{ left: -width * current + 'px' }">
-                <li v-for="(slide, i) in slides">
-                    <img :src="slide" alt="">
-                </li>
-            </ul>
-            <ul class="bullets">
-                <li v-for="(slide, i) in slides" @click="selectSlide(i)" v-html="i == current ? '&#9679;' : '&omicron;'">
-                </li>
-            </ul>
-            <a class="prev" href="#" @click.prevent="prevSlide">&#x25C0;</a>
-            <a class="next" href="#" @click.prevent="nextSlide">&#x25B6;</a>
-        </div>
+  <div class="carousel-container">
+    <div class="carousel" ref="carousel">
+      <img v-for="(image, index) in images" :key="index" :src="image.src" :alt="'Image ' + (index + 1)" class="carousel-slide">
     </div>
+  </div>
 </template>
 
 <script>
-new Vue({
-    el: '#slider',
-    data: {
-        slides: [
-            '../../assets/preview-1.png',
-            '../../assets/preview-2.png',
-            '../../assets/preview-3.png',
-        ],
-        current: 0,
-        width: 800,
-        timer: 0,
+export default {
+  data() {
+    return {
+      currentIndex: 0,
+      images: [
+        { src: '../../assets/preview-1.png' },
+        { src: '../../assets/preview-1.png' },
+        { src: '../../assets/preview-1.png' }
+      ],
+      autoplayInterval: null
+    };
+  },
+  mounted() {
+    this.startAutoplay();
+  },
+  beforeDestroy() {
+    this.stopAutoplay();
+  },
+  methods: {
+    startAutoplay() {
+      this.autoplayInterval = setInterval(this.nextSlide, 3000); // Change slide every 3 seconds
     },
-    methods: {
-        nextSlide: function () {
-            this.current++;
-            if (this.current >= this.slides.length)
-                this.current = 0;
-            this.resetPlay();
-        },
-        prevSlide: function () {
-            this.current--;
-            if (this.current < 0)
-                this.current = this.slides.length - 1;
-            this.resetPlay();
-        },
-        selectSlide: function (i) {
-            this.current = i;
-            this.resetPlay();
-        },
-        resetPlay: function () {
-            clearInterval(this.timer);
-            this.play();
-        },
-        play: function () {
-            let app = this;
-            this.timer = setInterval(function () {
-                app.nextSlide();
-            }, 2000);
-        }
+    stopAutoplay() {
+      clearInterval(this.autoplayInterval);
     },
-    created: function () {
-        this.play();
+    nextSlide() {
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
     }
-});
-
+  }
+};
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+<style>
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  width: 100%;
+  flex: 0 0 auto;
+}
+</style>
