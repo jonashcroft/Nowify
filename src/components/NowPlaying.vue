@@ -18,19 +18,22 @@
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
-      <img src="../../assets/preview-1.png" class="now-playing__image" />
-      <h1 class="now-playing__idle-heading">No music is playing 😔</h1>
+      <Slider />
     </div>
   </div>
 </template>
 
 <script>
 import * as Vibrant from 'node-vibrant'
-
+import Slider from '@/components/Slider.vue';
 import props from '@/utils/props.js'
 
 export default {
   name: 'NowPlaying',
+  
+  components: {
+    Slider
+  },
 
   props: {
     auth: props.auth,
