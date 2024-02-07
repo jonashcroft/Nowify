@@ -1,7 +1,7 @@
 <template>
   <div class="carousel-container">
     <div class="carousel" ref="carousel">
-      <img v-for="(image, index) in images" :key="index" : :alt="'Image ' + (index + 1)" class="carousel-slide">
+      <img v-for="(image, index) in images" :key="index" : alt="'Image ' + (index + 1)" class="carousel-slide">
     </div>
   </div>
 </template>
