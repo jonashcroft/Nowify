@@ -18,6 +18,7 @@
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
+      <img src="../../assets/preview-1.png" class="now-playing__image" />
       <h1 class="now-playing__idle-heading">No music is playing 😔</h1>
     </div>
   </div>
