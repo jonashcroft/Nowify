@@ -12,9 +12,9 @@ export default {
     return {
       currentIndex: 0,
       images: [
-        '../../assets/preview-1.png' ,
-        '../../assets/preview-1.png',
-        '../../assets/preview-1.png' 
+        require('../../assets/preview-1.png') ,
+        require('../../assets/preview-2.png'),
+        require('../../assets/preview-3.png') 
       ],
       autoplayInterval: null
     };
