@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     startAutoplay() {
-      this.autoplayInterval = setInterval(this.nextSlide, 3000); // Change slide every 3 seconds
+       this.autoplayInterval = setInterval(this.nextSlide.bind(this), 3000);
     },
     stopAutoplay() {
       clearInterval(this.autoplayInterval);
