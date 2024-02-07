@@ -1,7 +1,7 @@
 <template>
   <div class="carousel-container">
     <div class="carousel" ref="carousel">
-      <img v-for="(image, index) in images" :key="index" :src="image.src" :alt="'Image ' + (index + 1)" class="carousel-slide">
+      <img v-for="(image, index) in images" :key="index" : :alt="'Image ' + (index + 1)" class="carousel-slide">
     </div>
   </div>
 </template>
@@ -12,9 +12,9 @@ export default {
     return {
       currentIndex: 0,
       images: [
-        { src: '../../assets/preview-1.png' },
-        { src: '../../assets/preview-1.png' },
-        { src: '../../assets/preview-1.png' }
+        '../../assets/preview-1.png' ,
+        '../../assets/preview-1.png',
+        '../../assets/preview-1.png' 
       ],
       autoplayInterval: null
     };
