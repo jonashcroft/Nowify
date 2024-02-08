@@ -17,7 +17,7 @@
         <h2 class="now-playing__artists" v-text="getTrackArtists"></h2>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="now-playing" :class="getNowPlayingClass()">
     <Carousel class="carousel" v-slot="{ currentSlide }">
       <Slide v-for="(slide, index) in carouselSlides" :key="index">
         {{ slide }}
