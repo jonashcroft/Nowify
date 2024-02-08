@@ -44,8 +44,7 @@ export default {
     const carouselSlides = ['preview-1', 'preview-2', 'preview-3'];
 
     return { carouselSlides }
-  }
-},
+  },
 
   props: {
     auth: props.auth,
