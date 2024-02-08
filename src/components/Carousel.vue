@@ -28,7 +28,6 @@ export default {
 
         onMounted(() => {
             getSlideCount.value = document.querySelectorAll('.slide').length;
-            console.log(getSlideCount.value);
         })
 
         autoPlay()
