@@ -19,11 +19,9 @@
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
     <Carousel class="carousel" v-slot="{ currentSlide }">
-      <div >
-
-          <img :src="require(`../../assets/preview-1.png`)" >
-
-      </div>
+      <Slide v-for="(slide, index) in carouselSlides" :key="index">
+        {{ slide }}
+      </Slide>
     </Carousel>
     </div>
   </div>
