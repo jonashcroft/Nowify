@@ -45,7 +45,7 @@ export default {
 
     return { carouselSlides }
   }
-}
+},
 
   props: {
     auth: props.auth,
