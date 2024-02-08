@@ -18,7 +18,13 @@
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
-      <Slider />
+      <Carousel class="carousel" v-slot="{ currentSlide }">
+      <Slide v-for="(slide, index) in carouselSlides" :key="index">
+        <div v-show="currentSlide == index + 1" class="slide-info">
+          <img :src="require(`../assets/${slide}.png`)" alt="">
+        </div>
+      </Slide>
+    </Carousel>
     </div>
   </div>
 </template>
@@ -26,14 +32,20 @@
 <script>
 import * as Vibrant from 'node-vibrant'
 import Slider from '@/components/Slider.vue';
+import Carousel from '@/components/Carousel.vue'
 import props from '@/utils/props.js'
 
 export default {
   name: 'NowPlaying',
   
-  components: {
-    Slider
-  },
+  components: { Carousel, Slide },
+  
+  setup() {
+    const carouselSlides = ['preview-1', 'preview-2', 'preview-3'];
+
+    return { carouselSlides }
+  }
+}
 
   props: {
     auth: props.auth,
