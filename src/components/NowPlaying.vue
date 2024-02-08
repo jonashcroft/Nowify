@@ -18,9 +18,9 @@
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
-      <Carousel v-slot="{ currentSlide }">
+      <Carousel class="carousel" v-slot="{ currentSlide }">
         <Slide v-for="(slide, index) in carouselSlides" :key="index">
-          <div v-show="currentSlide == index + 1">
+          <div v-show="currentSlide == index + 1" class="slide-info">
             <img :src="require(`../../assets/${slide}.png`)" alt="">
         </div>
       </Slide>
@@ -318,4 +318,24 @@ export default {
 }
 </script>
 
-<style src="@/styles/components/now-playing.scss" lang="scss" scoped></style>
+<style src="@/styles/components/now-playing.scss" lang="scss" scoped>
+  .carousel {
+  position: relative;
+  max-height: 100vh;
+  height: 100vh;
+
+  .slide-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    img {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+</style>
