@@ -31,7 +31,7 @@
 
 <script>
 import * as Vibrant from 'node-vibrant'
-import Slider from '@/components/Slider.vue';
+import Slide from '@/components/Slide.vue';
 import Carousel from '@/components/Carousel.vue'
 import props from '@/utils/props.js'
 
