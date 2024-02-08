@@ -18,18 +18,31 @@
       </div>
     </div>
     <div v-else class="now-playing" :class="getNowPlayingClass()">
-      <h1 class="now-playing__idle-heading">No music is playing 😔</h1>
+    <Carousel class="carousel" v-slot="{ currentSlide }">
+      <Slide v-for="(slide, index) in carouselSlides" :key="index">
+        {{ slide }}
+      </Slide>
+    </Carousel>
     </div>
   </div>
 </template>
 
 <script>
 import * as Vibrant from 'node-vibrant'
-
+import Slide from '@/components/Slide.vue';
+import Carousel from '@/components/Carousel.vue'
 import props from '@/utils/props.js'
 
 export default {
   name: 'NowPlaying',
+  
+  components: { Carousel, Slide },
+  
+  setup() {
+    const carouselSlides = ['preview-1', 'preview-2', 'preview-3'];
+
+    return { carouselSlides }
+  },
 
   props: {
     auth: props.auth,
@@ -303,4 +316,24 @@ export default {
 }
 </script>
 
-<style src="@/styles/components/now-playing.scss" lang="scss" scoped></style>
+<style src="@/styles/components/now-playing.scss" lang="scss" scoped>
+  .carousel {
+  position: relative;
+  max-height: 100vh;
+  height: 100vh;
+
+  .slide-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    img {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+</style>
