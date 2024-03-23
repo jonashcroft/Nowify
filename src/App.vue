@@ -7,6 +7,7 @@
       :player="player"
       @spotifyTrackUpdated="updateCurrentTrack"
       @requestRefreshToken="requestRefreshTokens"
+      @update-auth="updateAuth"
     ></Component>
   </div>
 </template>
@@ -96,7 +97,13 @@ export default {
      */
     updateCurrentTrack(value) {
       this.player = value
+    },
+
+    updateAuth(updatedAuth) {
+    this.auth = { ...updatedAuth };
+    setStoredAuth(this.auth);
     }
+    
   },
 
   watch: {
