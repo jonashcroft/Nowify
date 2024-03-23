@@ -14,7 +14,6 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@babel/eslint-parser": "^7.24.1",
     "axios": "^1.6.8",
     "core-js": "^3.36.1",
     "dotenv": "^16.4.5",
@@ -24,6 +23,7 @@
     "vue": "^3.4.21"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.24.1",
     "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-eslint": "~5.0.8",
     "@vue/cli-service": "~5.0.8",
