@@ -37,6 +37,9 @@ export default {
     }
   },
   mounted() {
+    /**
+     * Set access token on load.
+     */
     this.getUrlAuthCode();
   },
   methods: {
@@ -78,7 +81,7 @@ export default {
       const data = await res.json()
       this.handleAccessTokenResponse(data)
       } catch (error) {
-        console.error("Fout bij het aanvragen van access tokens:", error);
+        console.error("Error obtaining authorization token: ", error);
       }
     },
     handleAccessTokenResponse(accessTokenResponse = {}) {
