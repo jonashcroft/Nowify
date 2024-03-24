@@ -1,6 +1,7 @@
 services:
   nowify:
     build: .
+    container_name: nowify
     ports:
       - "8008:80"
     environment:
