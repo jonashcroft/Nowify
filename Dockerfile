@@ -2,12 +2,10 @@
 FROM node:21 as build-stage
 WORKDIR /app
 COPY package*.json ./
-## If you want to significantly speed up the build, use yarn instead of npm:
-# RUN yarn install
-RUN npm install
+RUN yarn install
 COPY . .
-# RUN yarn build
-RUN npm run build
+RUN yarn build
+
 
 # Production stage
 FROM nginx:stable-alpine as production-stage
