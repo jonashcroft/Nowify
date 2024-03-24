@@ -1,0 +1,8 @@
+services:
+  nowify:
+    build: .
+    ports:
+      - "8008:80"
+    environment:
+      - VUE_APP_SP_CLIENT_ID=${VUE_APP_SP_CLIENT_ID}
+      - VUE_APP_SP_CLIENT_SECRET=${VUE_APP_SP_CLIENT_SECRET}
