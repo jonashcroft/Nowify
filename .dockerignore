@@ -1,9 +1,9 @@
 .DS_Store
 node_modules
 /dist
-package-lock.json
+yarn.lock
 
-# local env files
+# Local environment files
 .env
 .env.local
 .env.*.local
@@ -22,3 +22,13 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Additional files and directories
+README.md
+LICENSE
+docker-compose.yml
+*.png
+*.sln
+*.sw?
+*.md
+assets

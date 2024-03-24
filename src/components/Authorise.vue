@@ -19,91 +19,56 @@
     </p>
   </div>
 </template>
-
 <script>
-import props from '@/utils/props.js'
+import props from '@/utils/props.js';
 
 const searchParams = new URLSearchParams()
 const currentParams = new URLSearchParams(window.location.search)
 
 export default {
-  name: 'Authorise',
-
-  components: {},
-
+  name: 'AuthoriseSpotify',
   props: {
     auth: props.auth,
     endpoints: props.endpoints
   },
-
   data() {
-    return {}
+    return {
+      localAuth: { ...this.auth }
+    }
   },
-
-  computed: {},
-
   mounted() {
     /**
      * Set access token on load.
      */
-    this.getUrlAuthCode()
-
-    /**
-     * Refresh token already exists - we must get a new one.
-     */
-    if (this.auth.refreshToken) {
-      this.requestAccessTokens('refresh_token')
-    }
+    this.getUrlAuthCode();
   },
-
   methods: {
-    /**
-     * Initial Spotify auth, redirects the user to
-     * Spotify to grant app consent, user will
-     * be redirected back to the app.
-     */
     initAuthorise() {
       this.setAuthUrl()
       window.location.href = `${this.endpoints.auth}?${searchParams.toString()}`
     },
-
-    /**
-     * Check to see if the URL contains an auth code
-     * returned after the user grants consent from Spotify.
-     */
     getUrlAuthCode() {
       const urlAuthCode = currentParams.get('code')
-
       if (!urlAuthCode) {
         return
       }
-
-      this.auth.authCode = urlAuthCode
+      this.localAuth.authCode = urlAuthCode
+      this.$emit('update-auth', this.localAuth)
     },
-
-    /**
-     * Request the initial access and refresh tokens from Spotify.
-     */
     async requestAccessTokens(grantType = 'authorization_code') {
       let fetchData = {
         grant_type: grantType
       }
-
       if (grantType === 'authorization_code') {
-        ;(fetchData.code = this.auth.authCode),
-          (fetchData.redirect_uri = window.location.origin)
-      }
-
-      if (grantType === 'refresh_token') {
-        fetchData.refresh_token = this.auth.refreshToken
+        fetchData.code = this.localAuth.authCode
+        fetchData.redirect_uri = window.location.origin
+      } else if (grantType === 'refresh_token') {
+        fetchData.refresh_token = this.localAuth.refreshToken
       }
 
       const queryBody = new URLSearchParams(fetchData).toString()
-
-      const clientDetails = btoa(
-        `${this.auth.clientId}:${this.auth.clientSecret}`
-      )
-
+      const clientDetails = btoa(`${this.localAuth.clientId}:${this.localAuth.clientSecret}`)
+      try {
       const res = await fetch(`${this.endpoints.token}`, {
         method: 'POST',
         headers: {
@@ -114,110 +79,51 @@ export default {
       })
 
       const data = await res.json()
-      const accessTokenResponse = data
-
-      this.handleAccessTokenResponse(accessTokenResponse)
+      this.handleAccessTokenResponse(data)
+      } catch (error) {
+        console.error("Error obtaining authorization token: ", error);
+      }
     },
-
-    /**
-     * Handle the data returned from Spotify.
-     * @param {Object} accessTokenResponse - response object from fetch.
-     */
     handleAccessTokenResponse(accessTokenResponse = {}) {
-      /**
-       * Auth token expired.
-       */
-      if (accessTokenResponse.error?.error === 'invalid_grant') {
-        return
-      }
-
-      /**
-       * Access Token has expired.
-       */
-      if (accessTokenResponse.error?.status === 401) {
-        this.auth.authCode = ''
-        this.auth.status = false
-
-        return
-      }
-
-      /**
-       * Successful.
-       */
-      if (accessTokenResponse.access_token) {
-        this.auth.accessToken = accessTokenResponse.access_token
-
-        if (accessTokenResponse.refresh_token) {
-          this.auth.refreshToken = accessTokenResponse.refresh_token
+      if (accessTokenResponse.error) {
+        if (accessTokenResponse.error.error === 'invalid_grant' || accessTokenResponse.error.status === 401) {
+          this.localAuth.authCode = ''
+          this.localAuth.status = false
+          this.$emit('update-auth', this.localAuth)
+          return
         }
+      }
 
-        this.auth.status = true
-
-        /**
-         * There has to be a better way than this.
-         */
-        const param = param != 'undefined' ? param : ''
-        window.history.replaceState(
-          null,
-          null,
-          location.protocol +
-            '//' +
-            location.host +
-            location.pathname +
-            location.search
-              .replace(/[?&]code=[^&]+/, '')
-              .replace(/^&/, '?')
-              .replace(/[?&]state=[^&]+/, '')
-              .replace(/^&/, '?')
-        )
+      if (accessTokenResponse.access_token) {
+        this.localAuth.accessToken = accessTokenResponse.access_token
+        if (accessTokenResponse.refresh_token) {
+          this.localAuth.refreshToken = accessTokenResponse.refresh_token
+        }
+        this.localAuth.status = true
+        this.$emit('update-auth', this.localAuth)
       }
     },
-
-    /**
-     * Set the initial Spotify authorisation URL
-     * in which the user will be redirected to.
-     */
     setAuthUrl() {
-      searchParams.toString()
-      searchParams.append('client_id', this.auth.clientId)
+      searchParams.append('client_id', this.localAuth.clientId)
       searchParams.append('response_type', 'code')
       searchParams.append('redirect_uri', window.location.origin)
-      searchParams.append(
-        'state',
-        [
-          Math.random()
-            .toString(33)
-            .substring(2),
-          Math.random()
-            .toString(34)
-            .substring(3),
-          Math.random()
-            .toString(35)
-            .substring(4),
-          Math.random()
-            .toString(36)
-            .substring(5)
-        ].join('-')
-      )
       searchParams.append('scope', 'user-read-currently-playing')
-
-      return `${this.endpoints.auth}?${searchParams.toString()}`
+      searchParams.append('state', [
+        Math.random().toString(33).substring(2),
+        Math.random().toString(34).substring(3),
+        Math.random().toString(35).substring(4),
+        Math.random().toString(36).substring(5)
+      ].join('-'))
     }
   },
-
   watch: {
-    /**
-     * Watch authorisation code.
-     */
-    'auth.authCode': function() {
-      this.requestAccessTokens()
+    'localAuth.authCode': function(newVal, oldVal) {
+      if (newVal !== oldVal) {
+        this.requestAccessTokens()
+      }
     },
-
-    /**
-     * Watch authorisation status.
-     */
-    'auth.status': function() {
-      if (this.auth.refreshToken) {
+    'localAuth.status': function(newVal, oldVal) {
+      if (newVal !== oldVal && this.localAuth.refreshToken) {
         this.requestAccessTokens('refresh_token')
       }
     }
