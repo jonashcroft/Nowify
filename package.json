@@ -17,7 +17,7 @@
     "axios": "^1.6.8",
     "core-js": "^3.36.1",
     "dotenv": "^16.4.5",
-    "node-sass": "9.0.0",
+    "sass": "1.72.0",
     "node-vibrant": "^3.1.6",
     "spotify-web-api-js": "^1.5.2",
     "vue": "^3.4.21"
