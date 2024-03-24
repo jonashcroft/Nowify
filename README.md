@@ -77,7 +77,20 @@ Once the environment variables are in, you will have to navigate to your Netlify
 
 ---
 
-Alternatively, you can clone the repo, compile the code offline, and upload to your own webserver (more advanced users only). If you're considering doing this, I'll assume that you somewhat know you're way around build tools.
+For advanced users, you can run Nowify locally using Docker. First, clone the repo and set your Spotify credentials in `.env` or `docker-compose.yml`. Then, build and run with Docker:
+
+```bash
+docker-compose up --build
+```
+
+Alternatively, to run with Docker directly:
+
+```bash
+docker build -t nowify .
+docker run -p 8008:80 -e VUE_APP_SP_CLIENT_ID=[id] -e VUE_APP_SP_CLIENT_SECRET=[secret] nowify
+```
+
+Visit `http://localhost:8080` to access Nowify. For detailed Docker instructions, refer to the official documentation.
 
 ---
 
